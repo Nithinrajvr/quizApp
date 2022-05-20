@@ -1,0 +1,50 @@
+.quiz-header {
+  background-color: inherit;
+  color: white;
+  margin-top: 2rem;
+}
+.quiz-content {
+  height: 100%;
+}
+.quiz {
+  margin-left: 20rem;
+  margin-right: 20rem;
+  margin-top: 10rem;
+  height: 60vh;
+  animation: fade-in-left 0.5s ease-in-out;
+
+  /* From https://css.glass */
+  /* background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); */
+}
+.selector-container {
+  margin-bottom: 5rem;
+}
+
+@-webkit-keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
