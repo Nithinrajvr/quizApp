@@ -42,10 +42,11 @@ const QuizQuestions = () => {
           const answers = [...incorrect_answers, correct_answer];
           const shuffledAnswers = answers.sort((a, b) => 0.5 - Math.random());
           let position = "nextSlide";
+          console.log(type);
           if (questionIndex === index) {
             position = "activeSlide";
           }
-          let difficultyBg = "";
+          let difficultyBg = {};
           switch (difficulty) {
             case "easy":
               difficultyBg = {

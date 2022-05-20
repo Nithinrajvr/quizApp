@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export async function fetchData(category = 0, difficulty = "", type = "") {
   let url = "";
   if (difficulty === "any" && type === "any") {
