@@ -96,13 +96,13 @@
 }
 .prev,
 .next {
-  padding: 0.8rem;
+  padding: 1rem;
   position: absolute;
   top: 90%;
   transform: translateY(-50%);
   /* background: var(--clr-grey-5); */
   color: var(--clr-white);
-  width: 4rem;
+  width: 5rem;
   height: 3rem;
   display: flex;
   text-align: center;

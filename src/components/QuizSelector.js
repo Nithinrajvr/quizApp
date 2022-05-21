@@ -16,12 +16,16 @@ const QuizSelector = () => {
     e.preventDefault();
     questions = await fetchData(category, difficulty, type);
     questions.forEach((q, index) => {
-      const { question } = q;
+      const { question, incorrect_answers, correct_answer } = q;
+      const parsedIncorrectAnswer = incorrect_answers.map((item) => {
+        return parse(item);
+      });
+      const parsedCorrectAnswer = parse(correct_answer);
       const parsedQuestion = parse(question);
-      console.log(parsedQuestion);
       questions[index].question = parsedQuestion;
+      questions[index].incorrect_answers = parsedIncorrectAnswer;
+      questions[index].correct_answer = parsedCorrectAnswer;
     });
-    console.log(questions);
     setQuestionData(questions);
   };
 
@@ -65,7 +69,11 @@ const QuizSelector = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            {type ? type : "Question Type"}
+            {type
+              ? type === "boolean"
+                ? "True/False"
+                : type
+              : "Question Type"}
           </button>
           <ul
             className="dropdown-menu pre-scrollable"

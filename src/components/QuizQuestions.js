@@ -29,10 +29,12 @@ const QuizQuestions = () => {
   };
 
   useEffect(() => {
-    if (questionData.length === 10) {
-      buttonRef.current.style.visibility = "visible";
-    } else {
-      buttonRef.current.style.visibility = "hidden";
+    if (buttonRef.current !== null) {
+      if (questionData.length === 10) {
+        buttonRef.current.style.visibility = "visible";
+      } else {
+        buttonRef.current.style.visibility = "hidden";
+      }
     }
     setIndex(0);
   }, [questionData]);
