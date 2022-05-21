@@ -96,7 +96,7 @@
 }
 .prev,
 .next {
-  padding: 0.5rem;
+  padding: 0.8rem;
   position: absolute;
   top: 90%;
   transform: translateY(-50%);
@@ -104,8 +104,9 @@
   color: var(--clr-white);
   width: 4rem;
   height: 3rem;
-  display: grid;
+  display: flex;
   text-align: center;
+  justify-content: center;
   place-items: center;
   /* border-color: transparent; */
   /* border-radius: var(--radius); */

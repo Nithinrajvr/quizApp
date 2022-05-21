@@ -4,6 +4,8 @@ import { data } from "../data/data.js";
 import { fetchData } from "../data/fetchData.js";
 import { DataContext } from "../App";
 
+import parse from "html-react-parser";
+
 const QuizSelector = () => {
   const { setQuestionData } = useContext(DataContext);
   const [difficulty, setDifficulty] = useState("any");
@@ -13,6 +15,13 @@ const QuizSelector = () => {
     let questions = "";
     e.preventDefault();
     questions = await fetchData(category, difficulty, type);
+    questions.forEach((q, index) => {
+      const { question } = q;
+      const parsedQuestion = parse(question);
+      console.log(parsedQuestion);
+      questions[index].question = parsedQuestion;
+    });
+    console.log(questions);
     setQuestionData(questions);
   };
 

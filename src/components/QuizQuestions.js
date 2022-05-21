@@ -43,6 +43,7 @@ const QuizQuestions = () => {
         {questionData.map((item, questionIndex) => {
           const {
             category,
+            // type,
             difficulty,
             question,
             correct_answer,
