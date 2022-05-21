@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { DataContext } from "../App";
 
 //test
 
 const Navbar = () => {
+  const { setQuestionData } = useContext(DataContext);
+  const location = useLocation();
   return (
     <div className="navigation">
       <ul>
@@ -15,7 +18,20 @@ const Navbar = () => {
           <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/quiz">Start Quiz</Link>
+          {location.pathname === "/quiz" ? (
+            <Link style={{ cursor: "not-allowed", color: "grey" }} to="/quiz">
+              Start Quiz
+            </Link>
+          ) : (
+            <Link
+              to="/quiz"
+              onClick={() => {
+                setQuestionData([]);
+              }}
+            >
+              Start Quiz
+            </Link>
+          )}
         </li>
       </ul>
     </div>

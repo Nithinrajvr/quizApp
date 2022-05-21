@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/home.css";
+import { useNavigate } from "react-router";
+import { DataContext } from "../App";
 
 const Home = () => {
+  const { setQuestionData } = useContext(DataContext);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/quiz");
+    setQuestionData([]);
+  };
   return (
     <div className="home">
       <div className="card-container text">
@@ -20,7 +28,13 @@ const Home = () => {
         </div>
       </div>
       <div className="card-container button">
-        <button id="button" className="btn btn-primary">
+        <button
+          id="button"
+          className="btn btn-primary"
+          onClick={() => {
+            handleClick();
+          }}
+        >
           Start Quiz
         </button>
       </div>

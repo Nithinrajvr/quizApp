@@ -19,6 +19,9 @@
   padding: 1rem;
   font-size: 3rem;
 }
+.App-content {
+  height: 78vh;
+}
 #background-video {
   position: fixed;
   right: 0;
@@ -47,5 +50,22 @@
   body {
     background: url("https://images.unsplash.com/photo-1541966821190-704c400d10e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
     background-size: cover;
+  }
+}
+
+@media (min-width: 840px) {
+  * {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1200px) and (max-height: 538px) {
+  * {
+    font-size: 6px;
+  }
+}
+@media (max-width: 400px) and (max-height: 900px) {
+  * {
+    font-size: 3px;
   }
 }

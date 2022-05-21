@@ -1,29 +1,39 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 import "../styles/quizQuestions.css";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
-import { DataContext } from "./Quiz";
+import { DataContext } from "../App";
 
 const QuizQuestions = () => {
-  const { questionData } = useContext(DataContext);
+  const buttonRef = useRef();
+  const navigate = useNavigate();
+  const { questionData, setScore } = useContext(DataContext);
   const [index, setIndex] = useState(0);
 
   const handleAnswerCheck = (questionIndex, answer) => {
     if (questionData[questionIndex].correct_answer === answer) {
-      console.log("correct");
+      questionData[questionIndex]["chosen_answer"] = answer;
     } else {
-      console.log(questionData[questionIndex].correct_answer);
-      console.log("Wrong answer");
+      questionData[questionIndex]["chosen_answer"] = answer;
     }
+  };
+  const handlesubmit = () => {
+    let score = 0;
+    questionData.forEach((item) => {
+      if (item.correct_answer === item.chosen_answer) {
+        score += 1;
+      }
+    });
+    setScore(score);
+    navigate("/results");
   };
 
   useEffect(() => {
-    // const lastIndex = questionData.length - 1;
-    // if (index < 0) {
-    //   setIndex(lastIndex);
-    // }
-    // if (index > lastIndex) {
-    //   setIndex(0);
-    // }
+    if (questionData.length === 10) {
+      buttonRef.current.style.visibility = "visible";
+    } else {
+      buttonRef.current.style.visibility = "hidden";
+    }
     setIndex(0);
   }, [questionData]);
 
@@ -33,7 +43,6 @@ const QuizQuestions = () => {
         {questionData.map((item, questionIndex) => {
           const {
             category,
-            type,
             difficulty,
             question,
             correct_answer,
@@ -42,7 +51,6 @@ const QuizQuestions = () => {
           const answers = [...incorrect_answers, correct_answer];
           const shuffledAnswers = answers.sort((a, b) => 0.5 - Math.random());
           let position = "nextSlide";
-          console.log(type);
           if (questionIndex === index) {
             position = "activeSlide";
           }
@@ -118,18 +126,27 @@ const QuizQuestions = () => {
           );
         })}
         {index === 9 ? (
-          <button className="finish">Submit</button>
+          <button onClick={() => handlesubmit()} className="finish">
+            Submit
+          </button>
         ) : (
           <div>
             {index === 0 ? (
               <></>
             ) : (
-              <button className="prev" onClick={() => setIndex(index - 1)}>
-                <GrLinkPrevious />
+              <button
+                className="prev  btn btn-secondary"
+                onClick={() => setIndex(index - 1)}
+              >
+                <GrLinkPrevious style={{ fontSize: "2rem" }} />
               </button>
             )}
-            <button className="next" onClick={() => setIndex(index + 1)}>
-              <GrLinkNext />
+            <button
+              ref={buttonRef}
+              className="next btn btn-secondary"
+              onClick={() => setIndex(index + 1)}
+            >
+              <GrLinkNext style={{ fontSize: "2rem" }} />
             </button>
           </div>
         )}

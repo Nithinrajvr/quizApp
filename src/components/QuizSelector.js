@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "../styles/quizSelector.css";
 import { data } from "../data/data.js";
 import { fetchData } from "../data/fetchData.js";
-import { DataContext } from "./Quiz";
+import { DataContext } from "../App";
 
 const QuizSelector = () => {
   const { setQuestionData } = useContext(DataContext);
@@ -13,8 +13,6 @@ const QuizSelector = () => {
     let questions = "";
     e.preventDefault();
     questions = await fetchData(category, difficulty, type);
-    console.log("questions");
-    console.log(questions);
     setQuestionData(questions);
   };
 

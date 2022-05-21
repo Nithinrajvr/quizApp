@@ -7,10 +7,10 @@
   height: 100%;
 }
 .quiz {
-  margin-left: 20rem;
-  margin-right: 20rem;
-  margin-top: 10rem;
-  height: 60vh;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  margin-top: 5rem;
+  height: 100%;
   animation: fade-in-left 0.5s ease-in-out;
 
   /* From https://css.glass */
